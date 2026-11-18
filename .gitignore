@@ -1,0 +1,26 @@
+# Scanner runtime data
+repos/
+idls/
+reports*/
+!reports-demo/
+!reports-demo/**
+discovery/
+.discovery-cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+
+# Local environments and secrets
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/

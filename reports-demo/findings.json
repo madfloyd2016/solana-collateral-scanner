@@ -1,0 +1,15 @@
+[
+  {
+    "file": "sample/loopscale_like.rs",
+    "function": "deposit_collateral",
+    "line": 2,
+    "score": 13,
+    "priority": "HIGH_REVIEW",
+    "signals": "financial,asset_selector,token_transfer,oracle_price,decimals_scale,dynamic_accounts,config_reference",
+    "reasons": "asset/config selector appears in the instruction call graph; SPL token movement appears in the instruction call graph; oracle/price handling appears in the instruction call graph; decimal or unit scaling appears in the instruction call graph; dynamic or loosely typed account access appears in the call graph; no mint-to-config binding pattern found in the reachable functions; this is not proof of absence; no obvious oracle-to-config binding pattern found in the reachable functions",
+    "direct_calls": "get,load_asset_config,pow,read_oracle_price,transfer_checked,update_collateral_value",
+    "related_functions": "[{\"function\": \"deposit_collateral\", \"file\": \"sample/loopscale_like.rs\", \"line\": 2, \"signals\": [\"financial\", \"asset_selector\", \"token_transfer\", \"oracle_price\", \"decimals_scale\", \"dynamic_accounts\", \"config_reference\"]}]",
+    "snippet": "pub fn deposit_collateral(\n    token_program: AccountInfo,\n    user_token: AccountInfo,\n    vault_token: AccountInfo,\n    asset_id: u16,\n    amount: u64,\n    remaining_accounts: &[AccountInfo],\n) -> Result<()> {\n    token::transfer_checked(user_token, vault_token, amount)?;\n    let config = load_asset_config(asset_id)?;\n    let oracle = remaining_accounts.get(0).ok_or(ErrorCode::MissingOracle)?;\n    let raw_value = amount / 10u64.pow(config.decimals as u32);\n    let price = read_oracle_price(oracle)?;\n    update_collateral_value(raw_value * price)\n}",
+    "analysis_type": "rust_interprocedural_heuristic"
+  }
+]
