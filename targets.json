@@ -1,0 +1,45 @@
+[
+  {
+    "name": "Loopscale",
+    "program_id": "1oopBoJG58DgkUVKkEzKgyG9dvRmpgeEm1AVjoHkF78",
+    "repo": null,
+    "priority": "P0",
+    "note": "Case-study target. A public current Rust source repository was not confirmed; an older audit references bridgesplit/bridgesplit-program-library, which currently returns 404. IDL or audit text is not a substitute for deployed source."
+  },
+  {
+    "name": "Kamino KLend",
+    "program_id": "KLend2g3cP87fffoy8q1mQqGKjrxjC8boSyAYavgmjD",
+    "repo": "https://github.com/Kamino-Finance/klend",
+    "priority": "P1",
+    "note": "Public Rust/Anchor repository. Verify deployed binary against the exact source commit before treating findings as applicable to mainnet."
+  },
+  {
+    "name": "Marginfi v2 / Project 0 core",
+    "program_id": "MFv2hWf31Z9kbCa1snEPYctwafyhdvnV7FZnsebVacA",
+    "repo": "https://github.com/mrgnlabs/marginfi-v2",
+    "priority": "P1",
+    "note": "Project 0 documentation identifies its core as mrgnLendv2; treat this as one program target, not two independent programs."
+  },
+  {
+    "name": "Save (formerly Solend)",
+    "program_id": "So1endDq2YkqhipRh3WViPa8hdiSpxWy6z3Z6tMCpAo",
+    "repo": "https://github.com/solendprotocol/solana-program-library",
+    "priority": "P1",
+    "note": "Official Save documentation identifies this program and links its open-source contracts. Confirm the repository branch/commit matches the deployed program."
+  },
+  {
+    "name": "Drift v2",
+    "program_id": "dRiftyHA39MWEi3m9aunc5MzRF1JYuBsbn6VPcn33UH",
+    "repo": "https://github.com/drift-labs/protocol-v2",
+    "priority": "P2",
+    "note": "Cross-margin and collateral valuation surface; broader than a conventional isolated lending market."
+  },
+  {
+    "name": "yDelta",
+    "program_id": "HfYCWUgFuUbuzZTeQAAGzVkXw2uFM51QRoDfhFV8vyCj",
+    "repo": "https://github.com/IMEF-FEMI/yDelta",
+    "repo_role": "official_project_repository_candidate",
+    "priority": "P1",
+    "note": "User-supplied manual review: fixed-rate create-market/deposit/bid/match paths reportedly bind Mint, Bank, Oracle, decimals and LTV. v0.4 includes only synthetic guarded/unbound regression fixtures; it has not independently scanned yDelta source. This is a negative regression reference for the reviewed paths, not a whole-program security verdict. Withdraw/Redeem, liquidation details, P2Pool fallback and seven local invariant tests remain incomplete. Confirm source commit and deployed-program equivalence before attributing findings."
+  }
+]
